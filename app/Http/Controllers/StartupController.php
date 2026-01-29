@@ -7,22 +7,27 @@ use App\Models\Startup;
 
 class StartupController extends Controller
 {
-    public function store(Request $request) {
-
-    
-    $request->validate([
-        'nome' => 'required|string|max:120',
-        'setor' => 'nullable|string',
-        'email_contato' => 'required|email',
-        'data_cadastro' => 'required|date'
-    ]);
-
-    Startup::create([
-        'nome' => $request->nome,
-        'setor' => $request->setor,
-        'email_contato' => $request->email_contato,
-        'data_cadastro' => $request->data_cadastro,
-    ]);
-    return redirect()->back()->with('sucess', 'Startup cadastrada com sucesso!');
+    // Responsável por carregar a página com a lista
+    public function index()
+    {
+        $startups = Startup::all(); 
+        return view('startup', compact('startups'));
     }
+
+    // Responsável por salvar e retornar JSON (como você pediu)
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nome' => 'required|string|max:120',
+            'setor' => 'required|string',
+            'email_contato' => 'required|email',
+            'data_cadastro' => 'required|date'
+        ]);
+
+        $startup = Startup::create($request->all());
+
+        
+        return response()->json($startup, 201);
+        
+   }
 }
