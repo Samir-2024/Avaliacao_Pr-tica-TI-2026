@@ -1,4 +1,8 @@
+### Importante ao clicar em Cadastrar Startup , ele redireciona o usuario para ver os dados via json em uma outra view, e necessario voltar para a pagina anterior atualizar a pagina . Para a possibilidade da visualização das Startups
+
+
 ## A utilização da LGPD para este projeto serve para armazenar o email e contato do usuario , devido a utilização de @csrf, para o cadastramento da startup.
+
 
 ##  Pré-requisitos
 
